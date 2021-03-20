@@ -78,16 +78,16 @@ jobs:
         run: |
           bin/console about
       ## —— Yarn 🐱 ————————————————————————————————————————————————————————————
-      - name: Yarn install
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-
-      - name: JS NPM YARN Install
-        run: make jsinstall
-
-      - name: Yarn build
-        run: yarn run encore production
+#      - name: Yarn install
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '12'
+#
+#      - name: JS NPM YARN Install
+#        run: make jsinstall
+#
+#      - name: Yarn build
+#        run: yarn run encore production
 
       ## —— Application 🐱 —————————————————————————————————————————————————————
       - name: Load Fixtures
