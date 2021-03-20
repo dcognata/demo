@@ -15,8 +15,9 @@ jobs:
       mariadb:
         image: mariadb:latest
         env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: main
+          MYSQL_USER: test_user
+          MYSQL_ROOT_PASSWORD: test_password
+          MYSQL_DATABASE: test_main
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3

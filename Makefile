@@ -72,6 +72,14 @@ stop:
 commands: ## Display all commands in the project namespace
 	$(SYMFONY) list $(PROJECT)
 
+load-fixtures: ## Build the DB, control the schema validity, load fixtures and check the migration status
+	$(SYMFONY) doctrine:cache:clear-metadata
+	$(SYMFONY) doctrine:database:drop --if-exists --force
+	$(SYMFONY) doctrine:database:create
+	$(SYMFONY) doctrine:migrations:migrate --no-interaction
+	$(SYMFONY) doctrine:schema:validate
+	$(SYMFONY) doctrine:fixtures:load --no-interaction --group=dev
+
 ## —— Tests ✅ —————————————————————————————————————————————————————————————————
 test: ## phpunit.xml ## Launch main functional and unit tests
 	$(PHPUNIT) --testsuite=main --stop-on-failure
