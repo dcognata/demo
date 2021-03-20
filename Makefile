@@ -78,7 +78,7 @@ load-fixtures: ## Build the DB, control the schema validity, load fixtures and c
 	$(SYMFONY) doctrine:database:create
 	$(SYMFONY) doctrine:migrations:migrate --no-interaction
 	$(SYMFONY) doctrine:schema:validate
-	$(SYMFONY) doctrine:fixtures:load --no-interaction --group=dev
+	$(SYMFONY) doctrine:fixtures:load --no-interaction
 
 ## —— Tests ✅ —————————————————————————————————————————————————————————————————
 test: ## phpunit.xml ## Launch main functional and unit tests
