@@ -1,0 +1,34 @@
+security:
+    encoders:
+        App\Domain\Auth\Entity\User:
+            algorithm: auto
+
+#    enable_authenticator_manager: true
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Domain\Auth\Entity\User
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            lazy: true
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Infrastructure\Security\AuthAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+    role_hierarchy:
+        ROLE_USER: ~
+        ROLE_YODA: ROLE_USER
+
+    access_control:
+        - { path: '^/admin', roles: ROLE_YODA }
